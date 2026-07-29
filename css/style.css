@@ -1,0 +1,613 @@
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'MyCustomFont';
+    src: url('webfontkit-20250921-204300/boldpixels-webfont.woff2') format('woff2'),
+         url('webfontkit-20250921-204300/boldpixels-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MyCustomFont2';
+    src: url('webfontkit-20250921-204300/medodicaregular-webfont.woff2') format('woff2'),
+         url('webfontkit-20250921-204300/medodicaregular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* =========================================
+   Estructura Global
+========================================= */
+body {
+    background: linear-gradient(145deg, #ff00c8, #ff5ce1, #8f75ff, #4b9cff, #9efcff);
+    background-size: 400% 400%;
+    animation: gradienteAnimado 5s ease infinite;
+    background-attachment: fixed;
+    min-height: 100%;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0; /* Sustituye top, left, width, height al 100% */
+    background: rgba(0, 0, 0, 0.25);
+    pointer-events: none;
+    z-index: -1;
+    mix-blend-mode: screen;
+}
+
+.contenedor {
+    display: grid;
+    grid-template-rows: 18vh 10vh 1fr;
+    grid-template-columns: 100%;
+    grid-template-areas:
+        "cabeza"
+        "menu"
+        "contenido";
+    width: 99%;
+    overflow: hidden;
+    font-family: 'MyCustomFont2', sans-serif;
+}
+
+/* =========================================
+   Cabecera y Menú
+========================================= */
+.cabeza {
+    grid-area: cabeza;
+    border: 2px solid #003399;
+    border-radius: 6px 6px 0 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    padding: 0;
+    background-color: #ffffff;
+}
+
+.barra-titulo {
+    background: #000 url('../img/falla.gif') ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.barra-xp {
+    background: linear-gradient(to bottom, #3a6dff, #1040c0);
+    color: white;
+    font-weight: bold;
+    padding: 4px 6px;
+    border-bottom: 2px solid #003399;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    height: 26px;
+}
+
+.barra-xp .titulo {
+    font-size: 20px;
+    text-shadow: 1px 1px 2px black;
+    margin-left: 4px;
+}
+
+.botones {
+    display: flex;
+    gap: 2px;
+    align-items: flex-start;
+}
+
+.boton {
+    text-decoration: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    background: #f8f8f8;
+    text-align: center;
+    line-height: 18px;
+    font-size: 12px;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+    box-shadow: inset -1px -1px 1px #000000, inset 1px 1px 1px #000000;
+}
+
+.boton:hover {
+    background: #dcdcdc;
+}
+
+.boton.cerrar {
+    background: #e74c3c;
+    color: white;
+    border: 1px solid #a00000;
+}
+
+.boton.cerrar:hover {
+    background: #c0392b;
+}
+
+.menu {
+    grid-area: menu;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    color: #ffffff;
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.menu li {
+    display: inline-block;
+    font-size: 25px;
+    background: linear-gradient(to bottom, #3a6dff, #1040c0);
+    color: #000000;
+    cursor: pointer;
+    padding: 8px 10px;
+    text-shadow: 1px 1px 0px #bbbbbb;
+    box-shadow: 0px 0px 0px 3px #003399;
+    /* transition: transform 0.12s steps(2), box-shadow 0.12s steps(2), background-color 0.12s steps(2); */
+}
+
+.menu li:hover {
+    transform: translate(-2px, -2px);
+    background-color: #1887d6;
+    color: #ffffff;
+    box-shadow: 0px 0px 0px 3px #ffffff, 6px 6px 0px 0px #000000;
+    animation: temblor 0.4s linear infinite;
+}
+
+.link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* =========================================
+   Contenido Principal y Cajas (Hijos)
+========================================= */
+.contenido {
+    display: flex;
+    flex-direction: column;
+    grid-area: contenido;
+    padding: 20px 40px;
+    font-size: 1.2em;
+    background: #000 url('../img/Cuadros.gif') repeat center / auto;
+}
+
+.medio {
+    border: 2px solid #003399;
+    border-radius: 6px 6px 0 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    padding: 0;
+}
+
+.Padre {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+    width: 100%;
+}
+
+.Hijo {
+    border: #002080 2px solid;
+    color: rgb(42, 42, 42);
+    padding: 20px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    text-align: center;
+    background-color: transparent;
+}
+
+.Hijo h2 {
+    margin: 5px 0;
+    font-size: 2.5em;
+}
+
+h3 {
+    margin: 5px 0;
+}
+
+.Texto {
+    font-size: 1.5em;
+}
+
+.Hijo img {
+    max-width: 100%;
+    width: 40%;
+    height: auto;
+    margin: 5px 0;
+}
+
+/* Agrupación de estilos compartidos para imágenes posicionadas */
+.Hijo img.madoka, 
+.Hijo img.homura {
+    position: absolute;
+    bottom: 60px;
+    transform: rotate(10deg);
+}
+
+.Hijo img.madoka {
+    width: 200px;
+    left: 20px;
+}
+
+.Hijo img.homura {
+    width: 150px;
+    right: 40px;
+}
+
+.Hijo img.umalogo {
+    width: 200px;
+}
+
+/* =========================================
+   Multimedia (Iframes, Videos)
+========================================= */
+.Hijo iframe,
+.Hijo embed,
+.Hijo video,
+.iframe-wrapper iframe,
+.iframe-wrapper embed,
+.iframe-wrapper video {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    display: block;
+}
+
+.Hijo iframe,
+.Hijo embed,
+.Hijo video {
+    max-width: 100%;
+    height: auto;
+}
+
+.iframe-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+.iframe-wrapper iframe,
+.iframe-wrapper embed,
+.iframe-wrapper video {
+    position: absolute;
+    inset: 0;
+    border: 0;
+}
+
+/* =========================================
+   Fondos Personalizados
+========================================= */
+.fondo-blanco { background-color: #ffffff; }
+
+
+
+.fondo-mosaico {
+    background: url('../img/madofo.jpg') repeat auto;
+    color: white;
+}
+
+.fondo-madoka {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/madofo.jpg') center / cover;
+    color: white;
+}
+
+.fondo-uma {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/uma/umab.jpg') center / cover;
+    color: white;
+}
+
+.fondo-gradiente {
+    background: linear-gradient(145deg, #ff00c8, #4b9cff);
+    color: white;
+}
+
+/* =========================================
+   Bordes Animados y Elementos Gráficos
+========================================= */
+.borde-color, .borde-nb, .borde-teio {
+    border: 5px solid currentColor;
+    box-shadow: 0 0 10px currentColor;
+}
+
+.borde-color { animation: cambiarColor 0.5s infinite alternate; }
+.borde-nb { animation: nb 2s infinite; }
+.borde-teio { animation: teio 2s infinite; } /* Renombrado para evitar conflicto con keyframes nb */
+
+.borde-animado {
+    border: 5px solid transparent;
+    border-image: linear-gradient(0deg, #b827fc, #2c90fc, #b8fd33, #fec837, #fd1892) 1;
+    animation: rotarBorde 3s ease-in-out infinite;
+}
+
+.spin-text {
+    font-size: 3em;
+    color: #ffffff;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0px #828282, 2px 2px 0px #393939, 3px 3px 0px #000000;
+    transform: rotateY(0deg);
+    transform-style: preserve-3d;
+    animation: spin-3d 4s infinite linear;
+}
+
+/* =========================================
+   Botones Flotantes y Extras
+========================================= */
+.S {
+    font-size: 20px;
+    color: transparent;
+}
+
+.Help {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 100px;
+    height: 120px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.help-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.help-icon:hover {
+    transform: scale(0.7);
+    opacity: 0.35;
+}
+
+.mute {
+    border: none;
+    position: absolute;
+    right: 15px;
+    background: linear-gradient(to bottom, #3a6dff, #1040c0);
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 8px;
+    color: white;
+    font-size: 18px;
+    transition: background 0.3s, transform 0.3s;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+.mute:hover {
+    background: linear-gradient(to bottom, #1040c0, #0a35ab);
+}
+/* Transición suave para el color del borde y el movimiento */
+.mute {
+    border: 3px solid transparent; /* Borde transparente por defecto para que no cambie de tamaño */
+    transition: background 0.3s, transform 0.3s, border-color 0.8s ease, box-shadow 0.8s ease !important;
+}
+
+/* Estado cuando la música está pausada */
+.mute.estado-muteado {
+    border-color: #ff3333; /* Rojo */
+    box-shadow: 0 0 10px #ff3333, 2px 2px 5px rgba(0, 0, 0, 0.6);
+    animation: none; /* Detiene el movimiento */
+}
+
+/* Estado cuando la música está sonando */
+.mute.estado-sonando {
+    border-color: #33ff33; /* Verde */
+    box-shadow: 0 0 10px #33ff33, 2px 2px 5px rgba(0, 0, 0, 0.6);
+    /* Llama a la animación de movimiento suave */
+    animation: flotarTranquilo 4s ease-in-out infinite; 
+}
+
+/* Animación relajante (escala un poco y rota sutilmente) */
+@keyframes flotarTranquilo {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.1) rotate(5deg); }
+}
+
+/* Animaciones */
+
+@keyframes gradienteAnimado {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes temblor {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    20% { transform: translate(-2px, 2px) rotate(-1deg); }
+    40% { transform: translate(-2px, -2px) rotate(1deg); }
+    60% { transform: translate(2px, 2px) rotate(0deg); }
+    80% { transform: translate(2px, -2px) rotate(-1deg); }
+}
+
+@keyframes cambiarColor {
+    0%   { color: #FFB8BB; }
+    25%  { color: #FFE691; }
+    50%  { color: #95D5EE; }
+    75%  { color: #585872; }
+    100% { color: #9E4446; }
+}
+
+@keyframes nb {
+    0%, 100% { color: #000000; }
+    50% { color: #ffe078; }
+}
+
+@keyframes teio {
+    0%, 100% { color: #0b6af8; }
+    50% { color: #43eb4b; }
+}
+
+@keyframes rotarBorde {
+    0%, 100% { border-image-source: linear-gradient(0deg, #b827fc, #2c90fc, #b8fd33, #fec837, #fd1892); }
+    25% { border-image-source: linear-gradient(90deg, #2c90fc, #b8fd33, #fec837, #fd1892, #b827fc); }
+    50% { border-image-source: linear-gradient(180deg, #b8fd33, #fec837, #fd1892, #b827fc, #2c90fc); }
+    75% { border-image-source: linear-gradient(270deg, #fec837, #fd1892, #b827fc, #2c90fc, #b8fd33); }
+}
+
+@keyframes spin-3d {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
+}
+
+@keyframes wave {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.menu-item.wave-text span {
+    display: inline-block;
+    animation: wave 2s ease-in-out infinite;
+    font-size: 1em;
+}
+
+.menu-item.wave-text:hover span {
+    animation: wave 1s ease-in-out infinite;
+}
+
+.menu-item.wave-text span:nth-child(1) { animation-delay: 0s; }
+.menu-item.wave-text span:nth-child(2) { animation-delay: 0.07s; }
+.menu-item.wave-text span:nth-child(3) { animation-delay: 0.14s; }
+.menu-item.wave-text span:nth-child(4) { animation-delay: 0.21s; }
+.menu-item.wave-text span:nth-child(5) { animation-delay: 0.28s; }
+.menu-item.wave-text span:nth-child(6) { animation-delay: 0.35s; }
+.menu-item.wave-text span:nth-child(7) { animation-delay: 0.42s; }
+.menu-item.wave-text span:nth-child(8) { animation-delay: 0.49s; }
+.menu-item.wave-text span:nth-child(9) { animation-delay: 0.56s; }
+.menu-item.wave-text span:nth-child(10) { animation-delay: 0.63s; }
+
+
+@media (max-width: 600px) {
+    body {
+        padding: 5px;
+    }
+    .contenedor {
+        grid-template-rows: auto auto 1fr;
+        width: 100%;
+    }
+    .barra-titulo h1 {
+        font-size: 2.5em;
+        text-align: center;
+    }
+    .menu {
+        margin: 10px 0;
+        font-size: 1em;
+    }
+    .menu ul {
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+    }
+    .menu li {
+        font-size: 1.2em;
+        padding: 5px 10px;
+    }
+    .contenido {
+        padding: 10px;
+        font-size: 1.4em;
+    }
+    .Hijo {
+        padding: 10px;
+    }
+    .Hijo h2 {
+        font-size: 1.5em;
+    }
+    .Texto {
+        font-size: 0.50em;
+    }
+    .Hijo img {
+        width: 90%;
+    }
+    .mute {
+        right: 5px;
+        font-size: 14px;
+        padding: 6px;
+    }
+    .Help {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+.Texto {
+    font-size: 1.5em;
+}
+
+ul.Texto {
+    list-style-position: inside;
+    padding: 0;
+    margin: 0 auto;
+
+    display: inline-block;
+    text-align: left;
+}
+
+ul.Texto li {
+    margin: 5px 0;
+}
+ul.Texto {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+}
+
+ul.Texto li::before {
+    content: "• ";
+    color: #003399;
+    font-weight: bold;
+}
+@media (max-width: 600px) {
+
+    .menu {
+        margin: 10px 0;
+    }
+
+    .menu ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        padding: 0;
+    }
+
+    .menu li {
+        font-size: 18px;
+        padding: 6px 10px;
+    }
+
+}
+@media (max-width: 600px) {
+    .contenido {
+        padding: 10px;
+    }
+}

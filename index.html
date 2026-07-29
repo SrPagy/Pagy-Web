@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es" id="inicio">
+
+<head>
+    <link rel="icon" href="img/icon.png" type="">
+    <link rel="stylesheet" href="css/style.css?v=1.1">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PagyWeb</title>
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <div class="cabeza">
+
+            <div class="barra-xp">
+                <span class="titulo">Titulo.scr</span>
+
+                <div class="botones">
+                    <div class="boton">_</div>
+                    <div class="boton">□</div>
+
+                    <a href="nada.html" class="boton cerrar" target="_blank">
+                        X
+                    </a>
+                </div>
+            </div>
+
+            <div class="barra-titulo">
+
+                <div class="spin-container">
+                    <h1 class="spin-text">Pagy-Web</h1>
+                </div>
+
+                <button id="mute-btn" class="mute">🔊</button>
+
+            </div>
+
+        </div>
+
+        <div class="menu">
+
+            <nav>
+                <ul>
+
+                    <a href="#inicio" class="link">
+                        <li class="menu-item wave-text">
+                            <span>I</span><span>n</span><span>i</span><span>c</span><span>i</span><span>o</span>
+                        </li>
+                    </a>
+
+                    <a href="#descargas" class="link">
+                        <li class="menu-item wave-text">
+                            <span>D</span><span>e</span><span>s</span><span>c</span><span>a</span><span>r</span><span>g</span><span>a</span><span>s</span>
+                        </li>
+                    </a>
+
+                    <a href="#redes" class="link">
+                        <li class="menu-item wave-text">
+                            <span>R</span><span>e</span><span>d</span><span>e</span><span>s</span>
+                        </li>
+                    </a>
+
+                    <a href="#preguntas" class="link">
+                        <li class="menu-item wave-text">
+                            <span>P</span><span>r</span><span>e</span><span>g</span><span>u</span><span>n</span><span>t</span><span>a</span><span>s</span>
+                        </li>
+                    </a>
+
+                    <a href="#animes" class="link">
+                        <li class="menu-item wave-text">
+                            <span>A</span><span>n</span><span>i</span><span>m</span><span>e</span><span>s</span>
+                        </li>
+                    </a>
+
+                </ul>
+            </nav>
+
+        </div>
+
+        <div class="medio">
+
+            <div class="barra-xp">
+
+                <span class="titulo">
+                    <span id="seccion-texto">
+                        Cargando...
+                    </span>
+                </span>
+
+                <div class="botones">
+                    <div class="boton">_</div>
+                    <div class="boton">□</div>
+
+                    <a href="#Casino"
+                        onclick="window.location='https://shattereddisk.github.io/rickroll/rickroll.mp4'; return false;"
+                        class="boton cerrar" target="_blank">
+                        X
+                    </a>
+                </div>
+
+            </div>
+
+            <div id="contenido" class="contenido">
+                <!-- Aquí se cargan las secciones -->
+            </div>
+
+        </div>
+
+    </div>
+
+   <a href="#" class="Help" id="btn-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
+    <img class="help-icon" src="img/Kona.gif" alt="">
+</a>
+
+    <!-- Música -->
+    <iframe id="bg-music" style="display:none;" width="0" height="0" scrolling="no" frameborder="no" allow="autoplay"
+        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/245187618&auto_play=true">
+    </iframe>
+
+    <!-- Tu JS -->
+    <script src="js/app.js"></script>
+
+    <!-- Cursor Effects -->
+    <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js"></script>
+
+    <!-- Fairy Dust -->
+    <!-- Cursor Effect -->
+    <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js"></script>
+
+    <script>
+        window.addEventListener("load", () => {
+
+            new cursoreffects.fairyDustCursor({
+                colors: [
+                    "#39FF14",
+                    "#FF1493",
+                    "#FF4500",
+                    "#CCFF00",
+                    "#8D00FF",
+                    "#00E5FF"
+                ]
+            });
+
+        });
+    </script>
+
+    <!-- Música -->
+    <script>
+    const muteBtn = document.getElementById("mute-btn");
+    const musicIframe = document.getElementById("bg-music");
+
+    let paused = localStorage.getItem("paused") === "true";
+
+    muteBtn.textContent = paused ? "🔇" : "🔊";
+
+    // 🌟 NUEVA FUNCIÓN: Se encarga de aplicar los colores y el movimiento
+    function actualizarAparienciaBoton() {
+        if (paused) {
+            muteBtn.classList.add("estado-muteado");
+            muteBtn.classList.remove("estado-sonando");
+        } else {
+            muteBtn.classList.add("estado-sonando");
+            muteBtn.classList.remove("estado-muteado");
+        }
+    }
+
+    // Llamamos a la función al cargar para que tenga el color correcto desde el inicio
+    actualizarAparienciaBoton();
+
+    function postSCMessage(cmd) {
+        musicIframe.contentWindow.postMessage(
+            JSON.stringify({ method: cmd }),
+            '*'
+        );
+    }
+
+    muteBtn.addEventListener('click', () => {
+        paused = !paused;
+
+        postSCMessage(paused ? 'pause' : 'play');
+
+        muteBtn.textContent = paused ? "🔇" : "🔊";
+        localStorage.setItem("paused", paused);
+
+        // Actualizamos los colores tras hacer clic
+        actualizarAparienciaBoton();
+    });
+
+    window.addEventListener('load', () => {
+        if (!paused) {
+            postSCMessage('play');
+            
+            document.body.addEventListener(
+                'click',
+                () => {
+                    postSCMessage('play');
+                    // Por si el navegador bloqueó el autoplay inicial, 
+                    // forzamos el estado a "sonando" al primer clic en la pantalla
+                    paused = false;
+                    muteBtn.textContent = "🔊";
+                    localStorage.setItem("paused", paused);
+                    actualizarAparienciaBoton();
+                },
+                { once: true }
+            );
+        }
+    });
+</script>
+
+</body>
+
+</html>

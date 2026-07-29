@@ -1,0 +1,316 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<div class="Padre">
+    <div class="Hijo fondo-blanco">
+
+        <h2>Mis redes</h2>
+
+        <div class="redes">
+
+            <a href="https://www.youtube.com/channel/UCF0hyEcxPeSS0wGQPiwKhxg" class="vita-bubble youtube">
+                <div class="sparkle"></div>
+                <i class="fab fa-youtube"></i>
+            </a>
+
+            <a href="https://www.tiktok.com/@sr.pagy" class="vita-bubble tiktok">
+                <div class="sparkle"></div>
+                <i class="fab fa-tiktok"></i>
+            </a>
+
+            <a href="https://x.com/SrPagy" class="vita-bubble twitter">
+                <div class="sparkle"></div>
+                <i class="fab fa-x-twitter"></i>
+            </a>
+
+            <a href="https://discord.gg/w3v9Xvn4W9" class="vita-bubble discord">
+                <div class="sparkle"></div>
+                <i class="fab fa-discord"></i>
+                <span class="spotify-text">Server</span>
+            </a>
+
+   </div>
+        </div>
+<div class="Hijo fondo-blanco">
+        <h2>Otras plataformas</h2>
+         <div class="redes">
+
+            <a href="https://osu.ppy.sh/users/23708673" class="vita-bubble osu">
+                <div class="sparkle"></div>
+                <span class="osu-text">osu!</span>
+            </a>
+
+            <a href="https://open.spotify.com/playlist/6SdtdmHUjLx58wTJtoT7NK?si=ygi8NcqYQ_iOx_w_xWHggA&pi=S174ZfvvS5O3C" class="vita-bubble spotify">
+                <div class="sparkle"></div>
+
+                <i class="fab fa-spotify"></i>
+                <span class="spotify-text">Playlist</span>
+            </a>
+
+        </div>
+    </div>
+
+</div>
+    </div>
+</div>
+
+<style>
+
+.redes{
+    display:grid;
+    grid-template-columns:repeat(3,140px);
+    gap:50px;
+    justify-content:center;
+    padding:20px;
+}
+
+.vita-bubble{
+    width:140px;
+    height:140px;
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    position:relative;
+    overflow:hidden;
+
+    text-decoration:none;
+    color:white;
+
+    box-shadow:
+        inset -15px -20px 30px rgba(0,0,0,.25),
+        inset 15px 15px 25px rgba(255,255,255,.35),
+        0 20px 35px rgba(0,0,0,.45);
+
+    transform-style:preserve-3d;
+    transition:transform .08s ease-out;
+
+    --shine-x:30%;
+    --shine-y:25%;
+}
+
+/* Reflejo principal */
+
+.vita-bubble::before{
+    content:"";
+    position:absolute;
+
+    width:70px;
+    height:70px;
+
+    left:var(--shine-x);
+    top:var(--shine-y);
+
+    transform:translate(-50%,-50%);
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.5);
+    filter:blur(15px);
+
+    pointer-events:none;
+}
+
+/* Reflejo inferior */
+
+.vita-bubble::after{
+    content:"";
+
+    position:absolute;
+
+    width:90%;
+    height:90%;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle at 70% 70%,
+        transparent 55%,
+        rgba(255,255,255,.12)
+    );
+
+    pointer-events:none;
+}
+
+/* Destello animado */
+
+.sparkle{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+}
+
+.sparkle::before{
+    content:"";
+
+    position:absolute;
+
+    width:25px;
+    height:220px;
+
+    top:-40px;
+    left:-120px;
+
+    background:
+    linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.8),
+        transparent
+    );
+
+    transform:rotate(30deg);
+
+    animation:shine 5s infinite;
+}
+
+@keyframes shine{
+
+    0%{
+        left:-120px;
+        opacity:0;
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    30%{
+        left:180px;
+        opacity:1;
+    }
+
+    40%{
+        opacity:0;
+    }
+
+    100%{
+        left:180px;
+        opacity:0;
+    }
+}
+
+/* Estrellita */
+
+.vita-bubble i,
+.osu-text{
+    z-index:2;
+}
+
+.vita-bubble i{
+    font-size:58px;
+}
+
+.osu-text{
+    font-size:38px;
+    font-weight:bold;
+}
+.spotify-text{
+    font-size:18px;
+    font-weight:bold;
+    margin-top:5px;
+    margin-left:5px;
+}
+
+.youtube{
+    background:
+    radial-gradient(circle at 30% 25%,
+    #ff9a9a,
+    #ff3b3b 45%,
+    #b30000 100%);
+}
+
+.tiktok{
+    background:
+    radial-gradient(circle at 30% 25%,
+    #ffffff,
+    #444444 20%,
+    #111111 45%,
+    #000000 100%);
+}
+
+.twitter{
+    background:
+    radial-gradient(circle at 30% 25%,
+    #a0a0a0,
+    #444444 40%,
+    #000000 100%);
+}
+
+.discord{
+    background:
+    radial-gradient(circle at 30% 25%,
+    #b7c3ff,
+    #5865F2 40%,
+    #3944c4 100%);
+}
+
+.osu{
+    background:
+    radial-gradient(circle at 30% 25%,
+    #ffb6d8,
+    #ff66aa 45%,
+    #c2185b 100%);
+}
+
+.spotify{
+    background:
+    radial-gradient(circle at 30% 25%,
+    #9dffb5,
+    #1DB954 45%,
+    #12873b 100%);
+}
+/* Tablets */
+@media (max-width: 768px){
+
+    .redes{
+        grid-template-columns: repeat(2, 120px);
+        gap: 25px;
+    }
+
+    .vita-bubble{
+        width: 120px;
+        height: 120px;
+    }
+
+    .vita-bubble i{
+        font-size: 50px;
+    }
+
+    .osu-text{
+        font-size: 32px;
+    }
+
+}
+
+/* Teléfonos */
+@media (max-width: 480px){
+
+    .redes{
+        grid-template-columns: repeat(2, 100px);
+        gap: 20px;
+        padding: 15px;
+    }
+
+    .vita-bubble{
+        width: 100px;
+        height: 100px;
+    }
+
+    .vita-bubble i{
+        font-size: 42px;
+    }
+
+    .osu-text{
+        font-size: 28px;
+    }
+
+    .spotify-text{
+        font-size: 14px;
+    }
+
+}
+
+</style>

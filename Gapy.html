@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <iframe id="bg-music" style="display:none;" width="0" height="0" scrolling="no" frameborder="no" allow="autoplay"
+src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/310813995&auto_play=true"></iframe>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOOOOOOOOOOOOOOOOOOOOOOOOO</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-image: url(https://media1.tenor.com/m/KO80NCIjQAUAAAAC/cat-smiling-cat.gif);
+            background-size: 10%;
+        }
+
+        .gif {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+
+<script>
+    // ----- GIFS DESORDENADOS -----
+    const urls = [
+        "https://media1.tenor.com/m/KO80NCIjQAUAAAAC/cat-smiling-cat.gif",
+        "https://media1.tenor.com/m/PfiuP87QTQUAAAAC/cat-orange-cat.gif",
+        "https://media.tenor.com/SgHXpt3rKfYAAAAi/grant-yapping.gif",
+        "https://media1.tenor.com/m/RKyPzp_dSmUAAAAC/gay-sex-homo-seual-gay-sex.gif",
+        "https://media.tenor.com/rE3c9r2MnCsAAAAi/konata-dance.gif",
+        "https://media1.tenor.com/m/rfhztq1on6gAAAAC/anime-lucky-star.gif",
+        "https://media1.tenor.com/m/UytpfrPdEFUAAAAd/yuru-yuri.gif",
+        "https://media1.tenor.com/m/oj9g5Q97BjwAAAAC/anime-sakurako.gif",
+        "https://media1.tenor.com/m/vJa6h-KXzdMAAAAd/micheal-jackson-monster.gif",
+        "https://media1.tenor.com/m/RN7QuRQ5sX0AAAAd/super-idol-car.gif",
+        "https://media.tenor.com/okeQ24OoizEAAAAi/satono-diamond-diachan.gif",
+        "https://media1.tenor.com/m/j8Y254VBBU0AAAAC/satono-diamond-kitasan-black.gif",
+        "https://media.tenor.com/bnEwcgyZS_UAAAAi/agnes-tachyon-uma-musume.gif",
+        "https://media1.tenor.com/m/PGRh50tMOS8AAAAC/%ED%95%98%EB%A3%A8%EC%9A%B0%EB%9D%BC%EB%9D%BC.gif"
+
+    ];
+
+    const cantidad = 50;
+
+    for (let i = 0; i < cantidad; i++) {
+        const img = document.createElement("img");
+        img.src = urls[Math.floor(Math.random() * urls.length)];
+        img.classList.add("gif");
+
+        img.style.top = Math.random() * window.innerHeight + "px";
+        img.style.left = Math.random() * window.innerWidth + "px";
+
+        const size = Math.random() * 150 + 50;
+        img.style.width = size + "px";
+        img.style.height = size + "px";
+
+        document.body.appendChild(img);
+    }
+
+    // ----- MÚSICA CON LOOP -----
+    const musicIframe = document.getElementById("bg-music");
+
+    function postSCMessage(cmd) {
+        musicIframe.contentWindow.postMessage(JSON.stringify({ method: cmd }), '*');
+    }
+
+    window.addEventListener('message', (e) => {
+        if (e.origin.includes("soundcloud.com") && e.data) {
+            try {
+                const data = JSON.parse(e.data);
+                if (data.event === 'finish') {
+                    postSCMessage('play');
+                }
+            } catch {}
+        }
+    });
+
+    function playMusic() {
+        postSCMessage('play');
+        document.body.addEventListener('click', () => postSCMessage('play'), { once: true });
+    }
+
+    window.addEventListener('load', playMusic);
+</script>
+
+</body>
+</html>

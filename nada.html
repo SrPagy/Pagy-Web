@@ -1,0 +1,41 @@
+<!-- que buscas, vuelve -->
+<style>
+body {
+    background: radial-gradient(ellipse at center, #0a0a0a 0%, #000 100%);
+    color: #b0b0b0;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 2px;
+}
+
+.sombra {
+    background: rgba(20, 20, 20, 0.85);
+    border: 1px solid #222;
+    border-radius: 10px;
+    box-shadow: 0 0 40px 10px #000;
+    padding: 40px 60px;
+    text-align: center;
+}
+</style>
+<iframe id="bg-music" style="display:none;" width="0" height="0" scrolling="no" frameborder="no" allow="autoplay"
+src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1074184912&auto_play=true"></iframe>
+
+<script>
+const musicIframe = document.getElementById("bg-music");
+
+function postSCMessage(cmd) {
+    musicIframe.contentWindow.postMessage(JSON.stringify({ method: cmd }), '*');
+}
+
+function playMusic() {
+    postSCMessage('play');
+    document.body.addEventListener('click', () => postSCMessage('play'), { once: true });
+}
+
+window.addEventListener('load', playMusic);
+</script>
+
